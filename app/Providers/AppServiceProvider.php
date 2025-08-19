@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,8 +19,12 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
+    // metodo boo() serve para inicializar serviços da aplicação quando ela carrega.
     public function boot(): void
     {
-        //
+        // gates
+        Gate::define('user_is_admin', function (User $user) {
+            return $user->role === 'admin';
+        });
     }
 }

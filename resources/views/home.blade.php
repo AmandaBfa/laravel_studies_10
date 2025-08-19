@@ -3,12 +3,13 @@
         <div class="row">
             <div class="col">
 
-                @guest
-                    <ul class="display-6">
-
-                        <a href="{{ route('login') }}">Login</a>
-                    </ul>
-                @endguest
+                <ul class="display-6">
+                    @guest
+                        <li><a href="{{ route('login') }}">Login</a></li>
+                    @else
+                        <li><a href="{{ route('only_admin') }}">Só admins</a></li>
+                    @endguest
+                </ul>
 
             </div>
         </div>
