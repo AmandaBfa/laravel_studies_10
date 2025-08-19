@@ -3,11 +3,12 @@
         <div class="row">
             <div class="col">
 
-                <ul class="display-6">
-                    <li>Item 1</li>
-                    <li>Item 2</li>
-                    <li>Item 3</li>
-                </ul>
+                @guest
+                    <ul class="display-6">
+
+                        <a href="{{ route('login') }}">Login</a>
+                    </ul>
+                @endguest
 
             </div>
         </div>
