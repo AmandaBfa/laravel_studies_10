@@ -15,7 +15,7 @@ class AuthController extends Controller
     // metodo login
     public function login(): RedirectResponse
     {
-        $user = User::find(1); // busca no banco de dados o usuario com id = 1
+        $user = User::find(2); // busca no banco de dados o usuario com id = 1
         Auth::login($user); // faz a autenticação do login do usuario, sem precisar de senha
         return redirect()->route('home');
     }
@@ -29,25 +29,20 @@ class AuthController extends Controller
 
     public function onlyAdmins()
     {
-        // // a) Usando role diretamente
-        // if (Auth::user()->role !== 'admin') {
-        //     echo 'User não é admin.';
-        // } else {
-        //     echo 'Bem-vindo';
-        // }
-
-        // // b) Usando Gate
-        // if (Gate::allows('user_is_admin')) {
-        //     echo 'Bem-vindo';
-        // } else {
-        //     echo 'User não é admin.';
-        // }
-
-        // c) Usando método can() do usuário
-        if (Auth::user()->can('user_is_admin')) {
-            echo 'Bem-vindo!';
+        // b) Usando Gate
+        if (Gate::allows('user_is_admin')) {
+            echo 'Bem-vindo, admin.';
         } else {
-            echo 'Não autorizado';
+            echo 'NOK1.';
+        }
+    }
+
+    public function onlyUsers()
+    {
+        if (Gate::allows('user_is_user')) {
+            echo 'Bem-vindo, user.';
+        } else {
+            echo 'NOK2.';
         }
     }
 }
