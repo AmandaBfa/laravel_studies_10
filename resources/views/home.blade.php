@@ -15,6 +15,10 @@
                             <li><a href="{{ route('only_user') }}">Só usuários</a></li>
                         @endcan
 
+                        @can('user_can', 'delete')
+                            <li><a href="{{ route('delete') }}">Apagar</a></li>
+                        @endcan
+
                     @endguest
                 </ul>
 
@@ -41,6 +45,38 @@
                 @canany(['user_is_admin', 'user_is_user'])
                     <p>Olá!</p>
                 @endcanany
+
+                <hr>
+
+                @can('user_can_insert')
+                    <p>Usuário pode inserir</p>
+                @endcan
+
+                @can('user_can_delete')
+                    <p>Usuário pode apagar</p>
+                @endcan
+
+                @can('user_can_update')
+                    <p>Usuário pode atualizar</p>
+                @endcan
+
+                <hr>
+
+                @can('user_can', 'update')
+                    <p>Usuário pode atualizar</p>
+                @endcan
+
+                @can('user_can', 'insert')
+                    <p>Usuário pode inserir</p>
+                @endcan
+
+                @can('user_can', 'delete')
+                    <p>Usuário pode apagar</p>
+                @endcan
+
+                @can('user_can', 'select')
+                    <p>Usuário pode selecionar</p>
+                @endcan
 
             </div>
         </div>

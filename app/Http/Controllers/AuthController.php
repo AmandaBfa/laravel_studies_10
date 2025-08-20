@@ -15,7 +15,7 @@ class AuthController extends Controller
     // metodo login
     public function login(): RedirectResponse
     {
-        $user = User::find(2); // busca no banco de dados o usuario com id = 1
+        $user = User::find(1); // busca no banco de dados o usuario com id = 1
         Auth::login($user); // faz a autenticação do login do usuario, sem precisar de senha
         return redirect()->route('home');
     }
@@ -43,6 +43,15 @@ class AuthController extends Controller
             echo 'Bem-vindo, user.';
         } else {
             echo 'NOK2.';
+        }
+    }
+
+    public function delete()
+    {
+        if (Auth::user()->can('user_can', 'delete')) {
+            echo "Eliminado!";
+        } else {
+            return;
         }
     }
 }

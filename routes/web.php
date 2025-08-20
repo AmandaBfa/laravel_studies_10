@@ -10,3 +10,5 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/only_admin', [AuthController::class, 'onlyAdmins'])->name('only_admin');
 Route::get('/only_user', [AuthController::class, 'onlyUsers'])->name('only_user');
+
+Route::get('/delete', [AuthController::class, 'delete'])->name('delete');
